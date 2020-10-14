@@ -1,0 +1,43 @@
+//to create the objects 
+var car,wall;
+var speed,weight;
+var deformation;
+
+function setup() {
+  createCanvas(1600,400);
+  speed=random(55,90);
+  weight=random(400,1500);
+
+  car=createSprite(50,200,50,10);
+  wall=createSprite(1500,200,60,height/2);
+  wall.shapeColor=color(80,80,80);
+
+  
+  deformation=round(0.5*weight*speed*speed/22500);
+}
+
+function draw() {
+  background(0,0,0);
+  car.velocityX=speed;
+  if(car.isTouching(wall)){
+    car.velocityX=0;
+  }
+
+  if(deformation<100){
+    car.shapeColor=color(0,255,0);
+  }
+  if(deformation>100 && deformation<180){
+    car.shapeColor=color(230,230,0);
+  }
+  if(deformation>180){
+    car.shapeColor=color(255,0,0);
+  }
+
+  textSize(20);
+  textFont("Kohinoor Devanagari");
+  text("D E F O R M A T I O N : "+deformation,200,50);
+
+
+
+  drawSprites();
+}
